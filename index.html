@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Abhishek Shrivastava — Data Engineer → AI/ML Platform</title>
+<meta name="description" content="Senior Data Engineer building production AI systems with data-platform rigor. Production RAG, LLM systems, evaluation & observability.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;450;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0d1117;
+    --bg-raise:#141b24;
+    --line:#232d38;
+    --line-bright:#324150;
+    --ink:#e8edf3;
+    --ink-soft:#a7b3c0;
+    --ink-dim:#6b7885;
+    --accent:#4ec9b0;      /* teal — reads as "signal/verified", not startup-purple */
+    --accent-dim:#2d7d6e;
+    --amber:#e2b878;
+    --display:'Space Grotesk',sans-serif;
+    --body:'Inter',sans-serif;
+    --mono:'IBM Plex Mono',monospace;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg);color:var(--ink);
+    font-family:var(--body);font-weight:400;line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    font-feature-settings:"ss01","cv01";
+  }
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+  .wrap{max-width:920px;margin:0 auto;padding:0 28px}
+
+  /* ---- nav ---- */
+  nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(13,17,23,.82);backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:58px}
+  .logo{font-family:var(--mono);font-size:14px;font-weight:600;color:var(--ink);letter-spacing:-.02em}
+  .logo span{color:var(--accent)}
+  .nav-links{display:flex;gap:26px}
+  .nav-links a{font-family:var(--mono);font-size:12.5px;color:var(--ink-dim);text-decoration:none;transition:color .2s}
+  .nav-links a:hover{color:var(--accent)}
+  @media(max-width:600px){.nav-links{display:none}}
+
+  /* ---- hero ---- */
+  header{padding:88px 0 64px;border-bottom:1px solid var(--line)}
+  .eyebrow{
+    font-family:var(--mono);font-size:12.5px;color:var(--accent);
+    letter-spacing:.04em;margin-bottom:22px;
+    display:inline-flex;align-items:center;gap:9px;
+  }
+  .eyebrow::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px rgba(78,201,176,.16)}
+  h1{
+    font-family:var(--display);font-weight:600;
+    font-size:clamp(2.1rem,5.4vw,3.5rem);line-height:1.05;
+    letter-spacing:-.025em;margin-bottom:26px;
+  }
+  h1 .arrow{color:var(--ink-dim);font-weight:400}
+  h1 .hl{color:var(--accent)}
+  .lede{
+    font-size:clamp(1.05rem,2vw,1.22rem);color:var(--ink-soft);
+    max-width:660px;line-height:1.62;font-weight:400;
+  }
+  .lede strong{color:var(--ink);font-weight:600}
+  .role-line{
+    font-family:var(--mono);font-size:13px;color:var(--ink-dim);
+    margin-top:26px;letter-spacing:-.01em;
+  }
+  .role-line b{color:var(--ink-soft);font-weight:500}
+  .cta-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:38px}
+  .btn{
+    font-family:var(--mono);font-size:13px;font-weight:500;
+    text-decoration:none;padding:11px 18px;border-radius:7px;
+    transition:all .18s;display:inline-flex;align-items:center;gap:8px;
+  }
+  .btn-primary{background:var(--accent);color:#08120f;font-weight:600}
+  .btn-primary:hover{background:#65e0c6;transform:translateY(-1px)}
+  .btn-ghost{border:1px solid var(--line-bright);color:var(--ink-soft)}
+  .btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
+
+  /* ---- section scaffolding ---- */
+  section{padding:64px 0;border-bottom:1px solid var(--line)}
+  .sec-label{
+    font-family:var(--mono);font-size:12px;color:var(--ink-dim);
+    letter-spacing:.05em;text-transform:uppercase;margin-bottom:28px;
+    display:flex;align-items:center;gap:12px;
+  }
+  .sec-label::after{content:"";flex:1;height:1px;background:var(--line)}
+
+  /* ---- the signature: metrics readout ---- */
+  .readout{
+    background:var(--bg-raise);border:1px solid var(--line);
+    border-radius:12px;overflow:hidden;
+  }
+  .readout-head{
+    font-family:var(--mono);font-size:11.5px;color:var(--ink-dim);
+    padding:12px 18px;border-bottom:1px solid var(--line);
+    display:flex;align-items:center;gap:8px;letter-spacing:.03em;
+  }
+  .dot{width:9px;height:9px;border-radius:50%}
+  .metric-grid{display:grid;grid-template-columns:repeat(4,1fr)}
+  .metric{padding:24px 18px;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .metric:nth-child(4n){border-right:none}
+  .metric-val{font-family:var(--display);font-size:1.7rem;font-weight:600;letter-spacing:-.02em;color:var(--ink)}
+  .metric-val .u{font-size:.95rem;color:var(--accent);font-weight:500}
+  .metric-lbl{font-family:var(--mono);font-size:11px;color:var(--ink-dim);margin-top:6px;line-height:1.4}
+  @media(max-width:640px){.metric-grid{grid-template-columns:repeat(2,1fr)}.metric:nth-child(4n){border-right:1px solid var(--line)}.metric:nth-child(2n){border-right:none}}
+
+  /* ---- prose ---- */
+  .prose{font-size:1.06rem;color:var(--ink-soft);max-width:680px;line-height:1.68}
+  .prose p{margin-bottom:18px}
+  .prose strong{color:var(--ink);font-weight:600}
+  .prose .accent{color:var(--accent);font-weight:500}
+
+  /* ---- project card ---- */
+  .project{background:var(--bg-raise);border:1px solid var(--line);border-radius:12px;padding:30px;transition:border-color .2s}
+  .project:hover{border-color:var(--line-bright)}
+  .project + .project{margin-top:20px}
+  .proj-top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;margin-bottom:14px}
+  .proj-name{font-family:var(--display);font-size:1.32rem;font-weight:600;letter-spacing:-.02em}
+  .proj-tag{font-family:var(--mono);font-size:11px;color:var(--accent);border:1px solid var(--accent-dim);border-radius:5px;padding:4px 9px;white-space:nowrap}
+  .proj-tag.work{color:var(--amber);border-color:#6b5836}
+  .proj-desc{color:var(--ink-soft);line-height:1.62;margin-bottom:16px}
+  .proj-desc .accent{color:var(--accent);font-weight:500}
+  .chips{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:16px}
+  .chip{font-family:var(--mono);font-size:11px;color:var(--ink-dim);background:var(--bg);border:1px solid var(--line);border-radius:5px;padding:4px 9px}
+  .proj-link{font-family:var(--mono);font-size:12.5px;color:var(--accent);text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+  .proj-link:hover{text-decoration:underline}
+
+  /* ---- experience timeline ---- */
+  .xp{display:grid;grid-template-columns:auto 1fr;gap:0 22px}
+  .xp-row{display:contents}
+  .xp-time{font-family:var(--mono);font-size:12px;color:var(--ink-dim);padding-top:2px;white-space:nowrap}
+  .xp-body{padding-bottom:26px;border-left:1px solid var(--line);padding-left:22px;margin-left:-11px;position:relative}
+  .xp-body::before{content:"";position:absolute;left:-5px;top:6px;width:9px;height:9px;border-radius:50%;background:var(--accent);border:2px solid var(--bg)}
+  .xp-row:last-child .xp-body{border-left-color:transparent}
+  .xp-role{font-family:var(--display);font-size:1.08rem;font-weight:600;color:var(--ink)}
+  .xp-co{color:var(--accent);font-weight:500}
+  .xp-note{color:var(--ink-soft);font-size:.96rem;margin-top:5px;line-height:1.55}
+  @media(max-width:560px){.xp{grid-template-columns:1fr;gap:0}.xp-time{padding-top:0;margin-bottom:6px}.xp-body{border-left:none;padding-left:0;margin-left:0}.xp-body::before{display:none}}
+
+  /* ---- skills ---- */
+  .skill-block{margin-bottom:20px}
+  .skill-cat{font-family:var(--mono);font-size:12px;color:var(--accent);margin-bottom:10px;letter-spacing:.02em}
+  .skill-chips{display:flex;flex-wrap:wrap;gap:8px}
+  .sk{font-family:var(--mono);font-size:12px;color:var(--ink-soft);background:var(--bg-raise);border:1px solid var(--line);border-radius:6px;padding:6px 11px}
+
+  /* ---- footer ---- */
+  footer{padding:56px 0 72px;text-align:center}
+  .foot-thesis{font-family:var(--display);font-size:clamp(1.15rem,2.6vw,1.5rem);font-weight:500;letter-spacing:-.02em;max-width:640px;margin:0 auto 32px;line-height:1.4}
+  .foot-thesis .hl{color:var(--accent)}
+  .foot-links{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
+  .foot-meta{font-family:var(--mono);font-size:11.5px;color:var(--ink-dim);margin-top:38px}
+  .foot-meta a{color:var(--ink-soft);text-decoration:none}
+  .foot-meta a:hover{color:var(--accent)}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="logo">abhishek<span>.dev</span></div>
+    <div class="nav-links">
+      <a href="#work">Work</a>
+      <a href="#experience">Experience</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header>
+  <div class="wrap">
+    <div class="eyebrow">Available for AI/ML Platform &amp; Senior Data Engineering roles</div>
+    <h1>Data Engineer <span class="arrow">→</span> <span class="hl">production AI</span>, built with platform rigor.</h1>
+    <p class="lede">I'm Abhishek — a Senior Data Engineer with <strong>7 years</strong> building high-scale data platforms, now building production RAG and LLM systems with the same discipline that makes data platforms reliable: <strong>evaluation, observability, and grounding</strong> — not just working demos.</p>
+    <div class="role-line">
+      <b>Production RAG</b> · <b>LLM Systems</b> · <b>Evaluation &amp; Observability</b> · AWS · Python · Spark
+    </div>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="https://github.com/Abhishek1902/AI_Incident_Copilot" target="_blank" rel="noopener">→ View flagship project</a>
+      <a class="btn btn-ghost" href="#RESUME_LINK" id="resumeBtn">Résumé (PDF)</a>
+      <a class="btn btn-ghost" href="https://github.com/Abhishek1902" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</header>
+
+<!-- SIGNATURE: the measured-work readout -->
+<section id="proof">
+  <div class="wrap">
+    <div class="readout">
+      <div class="readout-head">
+        <span class="dot" style="background:#e2b878"></span>
+        <span class="dot" style="background:#4ec9b0"></span>
+        <span class="dot" style="background:#324150"></span>
+        &nbsp;work.metrics — measured, not estimated
+      </div>
+      <div class="metric-grid">
+        <div class="metric">
+          <div class="metric-val">1.0<span class="u"> recall@5</span></div>
+          <div class="metric-lbl">lookup retrieval,<br>eval harness</div>
+        </div>
+        <div class="metric">
+          <div class="metric-val">43<span class="u"> flows</span></div>
+          <div class="metric-lbl">orchestrated pipelines,<br>~170 jobs · ~3min deploy</div>
+        </div>
+        <div class="metric">
+          <div class="metric-val">B<span class="u">+/day</span></div>
+          <div class="metric-lbl">events processed<br>at platform scale</div>
+        </div>
+        <div class="metric">
+          <div class="metric-val">267<span class="u"> tests</span></div>
+          <div class="metric-lbl">on the RAG system,<br>CI/CD to prod</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="wrap">
+    <div class="sec-label">The thesis</div>
+    <div class="prose">
+      <p>Most GenAI systems die in production because the people building them never learned the boring discipline data engineers live in. <span class="accent">A RAG pipeline is a data pipeline wearing a trenchcoat</span> — chunking is partitioning, embeddings are a transformation step, retrieval is a query optimizer, evals are data-quality checks.</p>
+      <p>I've spent seven years making multi-step systems reliable, observable, and grounded in source-of-truth data. The LLM is the new part; the discipline of making orchestration reliable isn't. <strong>That's what I bring to AI platforms.</strong></p>
+    </div>
+  </div>
+</section>
+
+<!-- WORK -->
+<section id="work">
+  <div class="wrap">
+    <div class="sec-label">Selected work</div>
+
+    <div class="project">
+      <div class="proj-top">
+        <div class="proj-name">AI Incident Copilot</div>
+        <div class="proj-tag">Open source · Production RAG</div>
+      </div>
+      <p class="proj-desc">A production RAG system for incident root-cause analysis. Hybrid retrieval (SQL time-filter + pgvector dense search), cross-encoder reranking, and a confidence quality-gate that suppresses low-grounding answers — <span class="accent">no context → no LLM call → no hallucination</span>. The part I care most about: a 31-question evaluation harness measuring recall@k and MRR, which surfaced a real multi-hop retrieval gap I diagnosed and scoped fixes for.</p>
+      <div class="chips">
+        <span class="chip">Python</span><span class="chip">FastAPI</span><span class="chip">pgvector</span><span class="chip">cross-encoder rerank</span><span class="chip">Docker</span><span class="chip">CI/CD</span><span class="chip">267 tests</span>
+      </div>
+      <a class="proj-link" href="https://github.com/Abhishek1902/AI_Incident_Copilot" target="_blank" rel="noopener">github.com/Abhishek1902/AI_Incident_Copilot ↗</a>
+    </div>
+
+    <div class="project">
+      <div class="proj-top">
+        <div class="proj-name">EDP Hive MCP Server</div>
+        <div class="proj-tag work">MUFG · LLM tooling</div>
+      </div>
+      <p class="proj-desc">An internal Model Context Protocol server exposing read-only Hive operations (DDL, partitions, stats, EXPLAIN plans) as tools for AI coding assistants — enabling <span class="accent">prompt-based SQL workflows against the enterprise warehouse</span>, with read-only enforcement and data-egress controls. Hands-on with the agent-tooling layer that agentic systems are built on.</p>
+      <div class="chips">
+        <span class="chip">MCP</span><span class="chip">Hive</span><span class="chip">Python</span><span class="chip">LLM tooling</span><span class="chip">governance</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="wrap">
+    <div class="sec-label">Experience — 7 years, production scale</div>
+    <div class="xp">
+      <div class="xp-row">
+        <div class="xp-time">2024 — now</div>
+        <div class="xp-body">
+          <div class="xp-role">Senior Data Engineer · <span class="xp-co">MUFG</span></div>
+          <div class="xp-note">EDP risk-reporting platform. Event-driven pipelines on AWS (Glue, Lambda, EventBridge, S3/Iceberg, Redshift, Athena). Built the Hive MCP server; Lambda+boto3 CI/CD deploying 43 workflows in ~3 min; Redshift→Iceberg lakehouse migration; metadata-driven orchestration with lineage &amp; audit.</div>
+        </div>
+      </div>
+      <div class="xp-row">
+        <div class="xp-time">2022 — 2024</div>
+        <div class="xp-body">
+          <div class="xp-role">Data Engineer · <span class="xp-co">SailPoint</span></div>
+          <div class="xp-note">Snowflake models powering IdentityAI at billions of events/day. Built a config-driven "Pipeline Factory" (~70% faster onboarding); replaced Flink with Spark-based computation for multi-tenant scale and seven-figure annual savings.</div>
+        </div>
+      </div>
+      <div class="xp-row">
+        <div class="xp-time">2019 — 2022</div>
+        <div class="xp-body">
+          <div class="xp-role">Deputy Manager, Data Science &amp; Engineering · <span class="xp-co">DCB Bank</span></div>
+          <div class="xp-note">End-to-end pipelines for Internet/Mobile Banking on Hadoop/Hive. Automated RBI compliance &amp; operational reporting. Mentored 6+ engineers across the big-data stack.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="wrap">
+    <div class="sec-label">Toolkit</div>
+    <div class="skill-block">
+      <div class="skill-cat">AI / ML</div>
+      <div class="skill-chips">
+        <span class="sk">Production RAG</span><span class="sk">hybrid retrieval</span><span class="sk">cross-encoder reranking</span><span class="sk">embeddings</span><span class="sk">RAG evaluation (recall@k, MRR)</span><span class="sk">agentic patterns</span><span class="sk">MCP</span><span class="sk">LLM integration</span><span class="sk">PyTorch</span>
+      </div>
+    </div>
+    <div class="skill-block">
+      <div class="skill-cat">Data Engineering</div>
+      <div class="skill-chips">
+        <span class="sk">event-driven architecture</span><span class="sk">lakehouse (Iceberg)</span><span class="sk">DWH</span><span class="sk">ETL/ELT</span><span class="sk">streaming</span><span class="sk">data modeling</span><span class="sk">governance &amp; lineage</span>
+      </div>
+    </div>
+    <div class="skill-block">
+      <div class="skill-cat">Cloud / Tools</div>
+      <div class="skill-chips">
+        <span class="sk">AWS (Glue, S3, Lambda, EventBridge, Redshift, Athena, EMR)</span><span class="sk">Snowflake</span><span class="sk">dbt</span><span class="sk">Airflow</span><span class="sk">Docker/K8s</span><span class="sk">FastAPI</span><span class="sk">GitHub Actions</span><span class="sk">PostgreSQL + pgvector</span>
+      </div>
+    </div>
+    <div class="skill-block">
+      <div class="skill-cat">Languages</div>
+      <div class="skill-chips">
+        <span class="sk">Python</span><span class="sk">SQL</span><span class="sk">PySpark</span><span class="sk">Snowpark</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT / FOOTER -->
+<footer id="contact">
+  <div class="wrap">
+    <p class="foot-thesis">Agentic and RAG systems are <span class="hl">orchestration problems</span>. I've spent my career making orchestration reliable.</p>
+    <div class="foot-links">
+      <a class="btn btn-primary" href="mailto:abhishek.edu1902@gmail.com">Get in touch</a>
+      <a class="btn btn-ghost" href="https://www.linkedin.com/in/abhishek-shrivastava-b72828169/" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn btn-ghost" href="https://github.com/Abhishek1902" target="_blank" rel="noopener">GitHub</a>
+      <a class="btn btn-ghost" href="https://medium.com/@abhishekshrivastava980" target="_blank" rel="noopener">Writing</a>
+    </div>
+    <div class="foot-meta">
+      Bengaluru, India · <a href="mailto:abhishek.edu1902@gmail.com">abhishek.edu1902@gmail.com</a> · built &amp; measured with care
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
